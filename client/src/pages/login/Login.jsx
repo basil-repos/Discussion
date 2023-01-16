@@ -1,14 +1,23 @@
 import './Login.scss';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import HttpsOutlinedIcon from '@mui/icons-material/HttpsOutlined';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { Alert, CircularProgress } from "@mui/material";
+import { axiosInstance } from "../../config";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../redux/userSlice";
 
 const Login = () => {
     const [credentials, setCredentials] = useState({
         email: "",
         password: ""
     });
+    const [errMsg, setErrMsg] = useState(null);
+    const [loading, setLoading] = useState(false);
+    
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setCredentials(prev => {
@@ -16,9 +25,35 @@ const Login = () => {
         })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(credentials);
+
+        setLoading(true);
+        setErrMsg(null);
+
+        if(credentials.email === "" || credentials.password === ""){
+            setLoading(false);
+            if(credentials.email === ""){
+                setErrMsg("Email Address Required");
+            } else if(credentials.password === ""){
+                setErrMsg("Password Required");
+            }
+            return;
+        }
+
+        try {
+            const res = await axiosInstance.post("/auth/login", credentials);
+            setLoading(false);
+            if(res.status === 200){
+                dispatch(setUser(res.data));
+                navigate("/");
+            }else{
+                setErrMsg(res.message)
+            }
+        } catch (error) {
+            setLoading(false);
+            setErrMsg(error.response.data.message);
+        }
     }
 
     return (
@@ -37,10 +72,14 @@ const Login = () => {
                         <input type="password" id="password" placeholder='Password' onChange={handleChange} />
                     </div>
                 </div>
+                {errMsg && <Alert severity="error">{errMsg}</Alert>}
                 <Link to="/" className='link'>Forgot Password?</Link>
-                <button className='button' onClick={handleSubmit}>LOGIN</button>
+                <button  className={loading ? 'button disabled' : 'button'} onClick={handleSubmit}>
+                    {loading && <CircularProgress style={{ width: '20px', height: '20px', color: 'white', zIndex: 3, position: 'absolute' }} />}
+                    LOGIN
+                </button>
                 <div className='register-info'>
-                    <p>Not a Member? <Link to="/register" className='link'>Create an Account</Link></p>
+                    <p>Not a Member? <Link to="/signup" className='link'>Create an Account</Link></p>
                 </div>
             </div>
         </div>

@@ -39,6 +39,7 @@
                     padding: 10px;
                     border: none;
                     font-size: 14pt;
+                    width: 100%;
     
                     &:focus{
                         outline: none;
@@ -56,6 +57,15 @@
             font-weight: 600;
             background-color: rgb(35, 143, 179);
             color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .button.disabled{
+            cursor: no-drop;
+            color: rgb(157, 204, 244);
         }
 
         .link{
