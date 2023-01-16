@@ -1,4 +1,25 @@
-.link{
-    text-decoration: none;
-    color: inherit;
+.app{
+    .link{
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .layout{
+        display: flex;
+    }
+
+    .page{
+        background-color: #fbfbfb;
+        overflow-y: scroll;
+        height: calc(100vh - 60px);
+
+        &::-webkit-scrollbar {
+            width: 12px;               /* width of the entire scrollbar */
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: teal;    /* color of the scroll thumb */
+            border-radius: 15px;       /* roundness of the scroll thumb */
+        }
+    }
 }

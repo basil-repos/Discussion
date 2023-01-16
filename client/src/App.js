@@ -12,6 +12,7 @@ import Navbar from "./components/navbar/Navbar";
 import cookies from "js-cookies";
 import { logout } from "./redux/userSlice";
 import "./App.scss";
+import Sidebar from "./components/sidebar/Sidebar";
 
 function App() {
     const {currentUser} = useSelector(state => state.user);
@@ -29,7 +30,10 @@ function App() {
         return (
             <div className="app">
                 <Navbar />
-                <Outlet />
+                <div className="layout">
+                    <Sidebar />
+                    <Outlet />
+                </div>
             </div>
         );
     }
