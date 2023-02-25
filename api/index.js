@@ -6,6 +6,7 @@ import cors from 'cors';
 
 // Routes
 import authRoutes from './routes/auth.js';
+import teamRoutes from './routes/team.js'
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use(cookieParser());
 // Routes
 app.use(express.json());
 app.use("/api/auth", authRoutes);
+app.use("/api/teams", teamRoutes);
 
 // Error
 app.use((err, req, res, next) => {

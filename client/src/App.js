@@ -12,7 +12,13 @@ import Navbar from "./components/navbar/Navbar";
 import cookies from "js-cookies";
 import { logout } from "./redux/userSlice";
 import "./App.scss";
-import Sidebar from "./components/sidebar/Sidebar";
+import Project from "./pages/project/Project"; 
+import Team from "./pages/team/Team";
+import Create from "./pages/team/Create";
+import Overview from "./pages/team/Overview";
+import Discussion from "./pages/team/Discussion";
+import Members from "./pages/team/Members";
+import TeamLayout from "./pages/team/TeamLayout";
 
 function App() {
     const {currentUser} = useSelector(state => state.user);
@@ -31,7 +37,6 @@ function App() {
             <div className="app">
                 <Navbar />
                 <div className="layout">
-                    <Sidebar />
                     <Outlet />
                 </div>
             </div>
@@ -55,6 +60,36 @@ function App() {
                     path: "/",
                     element: <Home />
                 },
+                {
+                    path: "/projects",
+                    element: <Project />
+                },
+                {
+                    path: "/teams",
+                    element: <Team />
+                },
+                {
+                    path: "/teams/create",
+                    element: <Create />
+                },
+                {
+                    path: "/teams/:id",
+                    element: <TeamLayout />,
+                    children: [
+                        {
+                            path: "/teams/:id",
+                            element: <Overview />
+                        },
+                        {
+                            path: "/teams/:id/discussions",
+                            element: <Discussion />
+                        },
+                        {
+                            path: "/teams/:id/members",
+                            element: <Members />
+                        },
+                    ]
+                }
             ]
         },
         {

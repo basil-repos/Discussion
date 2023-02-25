@@ -9,17 +9,18 @@
     }
 
     .page{
+        width: 100%;
+        height: calc(100vh - 70px);
         background-color: #fbfbfb;
         overflow-y: scroll;
-        height: calc(100vh - 60px);
-
+        overflow-x: hidden;
+        
         &::-webkit-scrollbar {
-            width: 12px;               /* width of the entire scrollbar */
+            width: 15px;               /* width of the entire scrollbar */
         }
-
         &::-webkit-scrollbar-thumb {
-            background-color: teal;    /* color of the scroll thumb */
-            border-radius: 15px;       /* roundness of the scroll thumb */
+            background-color: #585858;    /* color of the scroll thumb */
+            border-radius: 10px;       /* roundness of the scroll thumb */
         }
     }
 }

@@ -3,7 +3,7 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import HttpsOutlinedIcon from '@mui/icons-material/HttpsOutlined';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { Alert, CircularProgress } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import { axiosInstance } from "../../config";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/userSlice";
@@ -34,7 +34,7 @@ const Login = () => {
         if(credentials.email === "" || credentials.password === ""){
             setLoading(false);
             if(credentials.email === ""){
-                setErrMsg("Email Address Required");
+                setErrMsg("Email Required");
             } else if(credentials.password === ""){
                 setErrMsg("Password Required");
             }
@@ -72,7 +72,7 @@ const Login = () => {
                         <input type="password" id="password" placeholder='Password' onChange={handleChange} />
                     </div>
                 </div>
-                {errMsg && <Alert severity="error">{errMsg}</Alert>}
+                {errMsg && <div className='error'>{errMsg}</div>}
                 <Link to="/" className='link'>Forgot Password?</Link>
                 <button  className={loading ? 'button disabled' : 'button'} onClick={handleSubmit}>
                     {loading && <CircularProgress style={{ width: '20px', height: '20px', color: 'white', zIndex: 3, position: 'absolute' }} />}

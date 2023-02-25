@@ -1,0 +1,20 @@
+.teamlayout-container{
+    display: flex;
+
+    .menu{
+        flex: 1;
+    }
+    
+    .wrapper{
+        flex: 8;
+        overflow-y: scroll;
+        
+        &::-webkit-scrollbar {
+            width: 15px;               /* width of the entire scrollbar */
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: #585858;    /* color of the scroll thumb */
+            border-radius: 10px;       /* roundness of the scroll thumb */
+        }
+    }
+}

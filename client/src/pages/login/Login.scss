@@ -15,6 +15,7 @@
         flex-direction: column;
         gap: 20px;
         border-radius: 15px;
+        height: auto;
 
         h1{
             text-align: center;
@@ -68,6 +69,10 @@
             color: rgb(157, 204, 244);
         }
 
+        .error{
+            color: red;
+        }
+
         .link{
             color: blue;
             text-decoration: none;
@@ -77,6 +82,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            color: rgb(1, 78, 78);
         }
     }
 }

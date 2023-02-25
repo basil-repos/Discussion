@@ -1,0 +1,37 @@
+.teams{
+    display: flex;
+    flex-direction: column;    
+    
+    .header{
+        display: flex;
+        margin-top: 20px;
+        justify-content: flex-end;
+        margin-right: 120px;
+        align-items: center;        
+
+        .add{
+            width: fit-content;
+            padding: 10px;
+            background-color: teal;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 17px;
+            border: none;
+            border-radius: 7px;
+        }
+    }
+
+    .contents{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 20px;
+        padding: 0px 120px;
+    }
+}
